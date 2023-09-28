@@ -11,8 +11,8 @@ import java.time.Duration;
 @RestController
 public class MyController {
 
-    @GetMapping("/test")
-    public Mono<String> greetingMessage() {
+    @GetMapping("/message")
+    public Mono<String> message() {
         return computeMessage()
                 .zipWith(getNameFromDB())
                 .map(value -> {
@@ -35,7 +35,7 @@ public class MyController {
 //    private RestTemplate restTemplate;
 
     @GetMapping("/greeting")
-    public String greet() {
+    public String greeting() {
         Observable<String> nameObservable = Observable.fromCallable(this::getNameFromMS)
                 .subscribeOn(Schedulers.newThread());
         Observable<String> greetingObservable = Observable.fromCallable(this::getGreetingFromMs)
